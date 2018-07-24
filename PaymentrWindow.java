@@ -84,13 +84,12 @@ public class PaymentrWindow extends JPanel {
         subLabel.setFont(new Font("Serif", Font.BOLD, 18));
         subLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 
-        double subTotal = getTotalAmount();
+        double subTotal = getTotalAmount() - getDiscountAmount();
         String stringSub = getStringTotal(subTotal);
 
         JLabel subAmountLbl;
         subAmountLbl = new JLabel(stringSub);
         subAmountLbl.setFont(new Font("Serif", Font.BOLD, 18));
-
 
         JLabel taxLabel;
         taxLabel = new JLabel("Cook county tax 10%   =   ");
@@ -108,7 +107,7 @@ public class PaymentrWindow extends JPanel {
         totalLabel = new JLabel("Total for Order   =  ");
         totalLabel.setFont(new Font("Serif", Font.BOLD, 32));
 
-        double totalOrderTotal = getTotalAmount() + taxTotal;
+        double totalOrderTotal = subTotal + taxTotal;
         String stringTotal = getStringTotal(totalOrderTotal);
 
         JLabel totalAmountLbl;
@@ -204,18 +203,18 @@ public class PaymentrWindow extends JPanel {
 
     private double getTotalAmount (){
         double sumTotal = 0;
+        for (int i =  0; i < orders.size(); i++){
+            sumTotal += orders.get(i).getOrderTotal();
+        }
+        return sumTotal;
+    }
+
+    private double getDiscountAmount (){
         double discountTotal = 0;
         for (int i =  0; i < orders.size(); i++){
-
-            //System.out.println(orders.get(i).toString());
-            //System.out.println(orders.get(i).getOrderTotal());
-
-            sumTotal += orders.get(i).getOrderTotal();
             discountTotal += orders.get(i).getDiscountAmount();
-
         }
-
-        return sumTotal - discountTotal;
+        return discountTotal;
     }
 
     private String getStringTotal (double total) {
@@ -264,13 +263,13 @@ public class PaymentrWindow extends JPanel {
             receipt.append("Order Total:                 " + getStringTotal(sumTotal)  + "\n" );
         }
 
-        double subTotal = getTotalAmount();
+        double subTotal = getTotalAmount() - getDiscountAmount();
         String stringSub = getStringTotal(subTotal);
 
         double taxTotal = getTotalAmount() * 0.10;
         String stringTax = getStringTotal(taxTotal);
 
-        double totalOrderTotal = getTotalAmount() + taxTotal;
+        double totalOrderTotal = subTotal + taxTotal;
         String stringTotal = getStringTotal(totalOrderTotal);
 
         receipt.append("==========================\n");
