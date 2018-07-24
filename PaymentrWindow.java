@@ -130,7 +130,7 @@ public class PaymentrWindow extends JPanel {
 
         JPanel p = new JPanel();
         p.setLayout(new BorderLayout());
-        p.setPreferredSize(new Dimension(600, 250));
+        p.setPreferredSize(new Dimension(600, 350));
         //p.add(p2, BorderLayout.LINE_START);
         //p.add(p1, BorderLayout.CENTER);
         p.add(p4, BorderLayout.CENTER);

@@ -11,7 +11,7 @@ public class MainMenu_V1 extends JFrame {
     private JPanel mainPanel;
 
     public MainMenu_V1() {
-        setTitle("Main Panel");
+        setTitle("Georges GUI");
         setResizable(false);
         setSize(new Dimension(700, 500));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
