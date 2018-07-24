@@ -1,3 +1,5 @@
+//Programmed by Tim Truty
+
 import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 import javax.swing.*;
